@@ -148,11 +148,12 @@ end
 car_data = {
   "Toyota": "2003",
   "Mercedes": "2012",
-  "Ford": "2021",
+  "Ford": "2021"
 }
-used_cars car_data
 
-
+# used_cars car_data
+# ^tutorial based on Ruby 2, this is correct for Ruby 3
+used_cars(**car_data)
 
 
 
