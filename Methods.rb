@@ -108,3 +108,51 @@ def proc_return
   return_proc2.call("lambda got in again")
 end
 p proc_return
+
+#Method arguments
+  #methods can be used with arguments, we can use arguments to fill in or modify local variable on the method
+  # using code below will organize the arguments put, making it so it does not follow what comes first
+
+def arguments(arg1:, arg2:, arg3:)
+  puts arg1
+  puts arg2
+  puts arg3
+end
+
+arguments(arg1: "one", arg2: "2", arg3: "3")
+
+#Splat
+
+# hard to add more items
+# def car_list(car_1, car_2, car_3)
+#   puts car_1
+#   puts car_2
+#   puts car_3
+# end
+
+def car_list(*cars)
+  puts cars
+end
+
+car_list("Ford", "Toyota", "Mercedes")
+
+#with data
+def used_cars(**used_list)
+  used_list.each do |make, release|
+    puts "Make: #{make}"
+    p "Year: #{release}"
+  end
+end
+
+#Hash, used for data
+car_data = {
+  "Toyota": "2003",
+  "Mercedes": "2012",
+  "Ford": "2021",
+}
+used_cars car_data
+
+
+
+
+
