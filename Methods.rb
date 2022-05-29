@@ -153,7 +153,15 @@ car_data = {
 
 # used_cars car_data
 # ^tutorial based on Ruby 2, this is correct for Ruby 3
-used_cars(**car_data)
+# used_cars(**car_data)
+
+#putting the hash inside the method
+def sold_cars(sold={})
+  puts sold[:make]
+  puts sold[:model]
+  puts sold[:year]
+end
+sold_cars(make: "Ford", model: "N/A", year: 2020)
 
 
 
