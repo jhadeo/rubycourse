@@ -58,3 +58,53 @@ p user.profile
 p user.account.last
 
 #Proc and Lambda
+
+#Proc
+# artist = Proc.new {|name, guitar| name + " " + guitar}, same as code below. {} makes a do block which can be made readable by using do
+artist = Proc.new do |name, guitar|
+  name + " " + guitar
+end
+
+p artist.call("Monkey", "Banana")
+
+#Lambda
+# cars = lambda {|model, year| model + " " + year}, same as; 
+cars  = ->(model, year) {model + " " + year}
+
+p cars.call("Flintstones", "Wheel")
+  
+  #The difference
+
+  #Lambda checks the number of argument, while Proc does not
+lambda_a = lambda { |var_a, var_b| var_a + var_b }
+p lambda_a.call("something", "not")
+
+# p lambda_a.call("something", "not", "third")
+# ^ will give wrong number of arguments if given (ArgumentError)
+
+proc_a = Proc.new do |x, y|
+  x + y
+end
+
+p proc_a.call("x","y","z")
+# ^ will ingore third argument, just the first two given
+
+  #Both differently treats 'return'
+def lambda_return
+  return_lambda = lambda { return "nice!" }
+  p return_lambda.call
+
+  return_lambda2 = lambda { |arg| arg }
+  return_lambda2.call("medic")
+end
+p lambda_return
+
+  #proc return ends the method prematurely, ignores code below
+def proc_return
+  return_proc = Proc.new { return "proc nice!" }
+  p return_proc.call
+
+  return_proc2 = lambda { |arg| arg }
+  return_proc2.call("lambda got in again")
+end
+p proc_return
