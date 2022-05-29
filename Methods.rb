@@ -152,8 +152,8 @@ car_data = {
 }
 
 # used_cars car_data
-# ^tutorial based on Ruby 2, this is correct for Ruby 3
-# used_cars(**car_data)
+# ^tutorial based on Ruby 2, below  is correct for Ruby 3
+used_cars(**car_data)
 
 #putting the hash inside the method
 def sold_cars(sold={})
