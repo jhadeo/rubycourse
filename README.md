@@ -1,2 +1,2 @@
 # rubycourse
-course
+course is the ruby course
