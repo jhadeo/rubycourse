@@ -10,19 +10,27 @@ class Ship
     
     @speed = 10
 
-    @x_pos = game_window.width / 2
-    @y_pos = game_window.height / 2
+    @x = game_window.width / 2
+    @y = game_window.height / 2
 
     @x_offset = @image.width / 2
-    @y_offest = @image.height / 2
+    @y_offset = @image.height / 2
+
+    @lasers = []
   end
 
   def draw
-    @image.draw_rot(@x_pos,@y_pos,0,0)
+    @image.draw_rot(@x,@y,0,0)
+    @lasers.each do |laser|
+      laser.draw
+    end
   end
   
   def update
     move
+    @lasers.each do |hello|
+      hello.update
+    end
   end
 
   def move
@@ -44,26 +52,38 @@ class Ship
   end
 
     def move_left
-      if @x_pos > 0 + @x_offset
-        @x_pos = @x_pos - @speed
+      if @x > 0 + @x_offset
+        @x = @x - @speed
       end
     end 
 
     def move_right
-      if @x_pos < @game_window.width - @x_offset
-        @x_pos = @x_pos + @speed
+      if @x < @game_window.width - @x_offset
+        @x = @x + @speed
       end
     end
 
     def move_up
-      if @y_pos > 0 + @y_offest
-        @y_pos = @y_pos - @speed
+      if @y > 0 + @y_offset
+        @y = @y - @speed
       end
     end
 
     def move_down
-      if @y_pos < @game_window.height - @y_offest
-        @y_pos = @y_pos + @speed
+      if @y < @game_window.height - @y_offset
+        @y = @y + @speed
       end
+    end
+
+    def button_down(keypress)
+      case keypress
+      when Gosu::KbSpace
+        fire_laser(SingleLaser.new(@game_window, self, @x, @y))
+      end
+    end
+
+    def fire_laser(laser)
+      @lasers << laser
+      laser.fire
     end
 end
